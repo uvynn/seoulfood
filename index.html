@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+
+
+<html lang="ko">
+
+    <head>
+        <title>서울의 사찰음식</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+        <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+        <style>
+            html, body, #mapid{
+                height: 100%;
+                margin: 0;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id = 'mapid'></div>
+
+        <script>
+            var map = L.map('mapid').setView([37.46646,126.95385],6);
+
+            var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+                attribution:'&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> Contributors'
+            }).addTo(map);
+
+            var myIcon = L.Icon.extend({
+                options: {
+                shadowUrl: 'image/myicon_shadow.png',
+                iconSize:     [46, 62],
+                shadowSize:   [44, 22],
+                iconAnchor:   [23, 62],
+                shadowAnchor: [4, 22],
+                popupAnchor:  [0, -62]
+                }
+            });
+
+            var castleIcon = new myIcon({iconUrl: 'image/myicon_castle.png'}),
+                mountainIcon = new myIcon({iconUrl: 'image/myicon_mountain.png'}),
+                mountainroadIcon = new myIcon({iconUrl: 'image/myicon_mountainroad.png'}),
+                horseIcon = new myIcon({iconUrl: 'image/myicon_horse.png'});
+                buildingIcon = new myIcon({iconUrl: 'image/myicon_building.png'});
+                villageIcon = new myIcon({iconUrl: 'image/myicon_village.png'});
+
+                L.icon = function (options) {
+                    return new L.Icon(options);
+                };
+
+                         
+            var marker =
+                L.marker([37.5738938, 126.9831801], {icon:buildingIcon}).bindPopup('발우공양').addTo(map);
+                L.marker([37.5737579, 126.9862465], {icon:buildingIcon}).bindPopup('산촌').addTo(map);
+                L.marker([37.5776465, 126.9709461], {icon:buildingIcon}).bindPopup('마지').addTo(map);
+                L.marker([37.507763, 126.9112277], {icon:buildingIcon}).bindPopup('아승지').addTo(map);
+                L.marker([37.4762538, 127.0426814], {icon:buildingIcon}).bindPopup('일상').addTo(map);
+                L.marker([37.4762512, 127.0426876], {icon:buildingIcon}).bindPopup('도반').addTo(map);
+
+        </script>
+    </body>
+</html>
